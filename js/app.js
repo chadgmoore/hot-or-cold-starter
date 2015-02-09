@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	var numberOfGuesses = 0;
+
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
@@ -23,11 +25,13 @@ $(document).ready(function(){
 	};
 
   	// Get Guess from user	
-	$('#guessButton').click(function(){
-		// this.preventDefault();
+	$('#guessButton').click(function(event){
+		event.preventDefault();
   		var guessedNumber = $('#userGuess').val();
-  		console.log('I guessed '+ guessedNumber)
-  		evaluateGuess(guessedNumber, secretNum);  		  		
+  		$('#guessList').append(guessedNumber + ' ');
+  		numberOfGuesses++;
+  		$('#count').empty().append(numberOfGuesses);
+  		// evaluateGuess(guessedNumber, secretNum);  		  		
 
    	});
 
@@ -41,13 +45,6 @@ function newGame() {
 		getSecretNumber(min, max);
 		console.log('starting new game');
 	};
-
-function getSecretNumber(min, max) {
-		var secretNum = Math.floor(Math.random() * (max - min)) + min;
-		console.log('secret number is ' + secretNum);
-		return secretNum;
-	};
-
 
 function getSecretNumber(min, max) {
 		var secretNum = Math.floor(Math.random() * (max - min)) + min;
