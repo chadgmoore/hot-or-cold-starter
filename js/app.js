@@ -24,9 +24,10 @@ $(document).ready(function(){
 	$('#guessButton').click(function(event){
 		event.preventDefault();
   		var guessedNumber = $('#userGuess').val();
-  		$('#guessList').append(guessedNumber + ' ');
+  		$('#guessList').append("<li>" + guessedNumber + "</li>");
   		numberOfGuesses++;
   		$('#count').empty().append(numberOfGuesses);
+  		$('#userGuess').val(' ');
   		evaluateGuess(guessedNumber, secretNum);  		  		
 
    	});
@@ -41,7 +42,7 @@ function newGame() {
 		$('#guessList').empty();
 		$('#count').empty().append('0');
 		$('#feedback').text("Make your Guess!");
-		$('#userGuess').text(' ');//not working
+		$('#userGuess').val(' ');//not working
 		return newNum;
 	};
 
